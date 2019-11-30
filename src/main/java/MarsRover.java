@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class MarsRover {
     public static void main(final String[] args) {
@@ -17,6 +18,10 @@ public class MarsRover {
 
     }
 
+    public static Stream<Character> toCharacterStream(String s){
+        return s.chars().mapToObj(c -> (char) c);
+    }
+
     public static Rover run(final Rover rover, final String instructions) {
         final Map<Character, Function<Rover, Rover>> instructionMap = new HashMap<Character, Function<Rover, Rover>>() {
             private static final long serialVersionUID = 1L;
@@ -26,7 +31,7 @@ public class MarsRover {
                 put('M', MarsRover::move);
             }
         };
-        return instructions.chars().mapToObj(c -> (char) c).reduce(rover,
+        return toCharacterStream(instructions).reduce(rover,
                 (rvr, current) -> instructionMap.get(current).apply(rvr), (rvr, current) -> current);
     }
 
