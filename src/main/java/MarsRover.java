@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public class MarsRover {
+public final class MarsRover {
     public static void main(final String[] args) {
         final Rover rover1 = newRover(Direction.NORTH, newPosition(1, 2));
 
