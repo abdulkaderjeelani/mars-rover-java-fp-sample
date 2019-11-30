@@ -18,7 +18,7 @@ public class MarsRover {
 
     }
 
-    public static Stream<Character> toCharacterStream(String s){
+    public static Stream<Character> toCharacterStream(String s) {
         return s.chars().mapToObj(c -> (char) c);
     }
 
@@ -31,8 +31,8 @@ public class MarsRover {
                 put('M', MarsRover::move);
             }
         };
-        return toCharacterStream(instructions).reduce(rover,
-                (rvr, current) -> instructionMap.get(current).apply(rvr), (rvr, current) -> current);
+        return toCharacterStream(instructions).reduce(rover, (rvr, current) -> instructionMap.get(current).apply(rvr),
+                (rvr, current) -> current);
     }
 
     public static Rover newRover(final Direction heading, final Position position) {
@@ -65,7 +65,7 @@ public class MarsRover {
     public static Rover turnRight(final Rover rover) {
         List<Direction> directions = getDirections();
         final Integer rightIndex = directions.indexOf(rover.heading) + 1;
-        final Integer toIndex = rightIndex > directions.size() - 1 ? rightIndex - directions.size() : rightIndex;
+        final Integer toIndex = rightIndex >= directions.size() ? rightIndex - directions.size() : rightIndex;
         return newRover(directions.get(toIndex), rover.position);
     }
 
