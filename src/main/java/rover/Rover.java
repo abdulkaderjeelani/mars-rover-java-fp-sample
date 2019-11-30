@@ -1,3 +1,8 @@
+package rover;
+
+import direction.Direction;
+import position.Position;
+
 public class Rover {
 
     public final Direction heading;
